@@ -1,4 +1,98 @@
-### Network Security Projects For Phising Data
+
+---
+
+##  Data Versioning with Apache Airflow (via Astronomer)
+
+This setup uses **Astronomer's Astro CLI** to run **Apache Airflow** in a containerized environment with Docker. It simplifies development and eliminates dependency issues.
+
+---
+
+###  Steps to Set Up
+
+#### 1. **Install Docker Desktop**
+
+Download and install Docker Desktop from:
+ [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
+
+> Docker is required to run the containerized Airflow environment.
+
+---
+
+#### 2. **Install Astro CLI**
+
+Install the [Astro CLI](https://docs.astronomer.io/astro/cli/install-cli) (command-line tool for managing Airflow projects):
+
+```bash
+curl -sSL https://install.astronomer.io | sudo bash
+```
+
+Verify installation:
+
+```bash
+astro --version
+```
+
+---
+
+#### 3. **Initialize the Astro Project**
+
+Navigate to your project folder and run:
+
+```bash
+astro dev init
+```
+
+This will create the following structure:
+
+```
+.
+├── dags/
+├── include/
+├── plugins/
+├── tests/
+├── Dockerfile
+└── airflow_settings.yaml
+```
+
+---
+
+#### 4. **Create Your DAG**
+
+---
+
+#### 5. **Run the Project**
+
+To start your local Airflow environment:
+
+```bash
+astro dev start
+```
+
+* Access Airflow UI at: [http://localhost:8080](http://localhost:8080)
+* Default credentials: `admin / admin`
+
+The DAG will now run as scheduled, extracting data from the source, transforming it, and loading it into your database.
+
+---
+
+
+
+```markdown
+SUCEESULLY DEPLOYED ETL PIPELINE
+![Airflow UI Screenshot](airflow_succes.png)
+```
+
+
+```markdown
+UPLOADED DATA SUCCESSFULLY TO MONGO DB IN ATLAS
+![Airflow UI](database.png)
+```
+
+---
+
+
+
+### Projects For Phising Data
 
 Setup github secrets:
 AWS_ACCESS_KEY_ID=
