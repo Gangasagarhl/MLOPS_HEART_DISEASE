@@ -79,13 +79,13 @@ The DAG will now run as scheduled, extracting data from the source, transforming
 
 ```markdown
 SUCEESULLY DEPLOYED ETL PIPELINE
-![Airflow UI Screenshot](airflow_succes.png)
+![Airflow UI Screenshot](https://github.com/Gangasagarhl/MLOPS_HEART_DISEASE/blob/main/airflow_succes.png)
 ```
 
 
 ```markdown
 UPLOADED DATA SUCCESSFULLY TO MONGO DB IN ATLAS
-![Airflow UI](database.png)
+![Airflow UI](https://github.com/Gangasagarhl/MLOPS_HEART_DISEASE/blob/main/database.png)
 ```
 
 ---
