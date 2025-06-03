@@ -77,16 +77,17 @@ The DAG will now run as scheduled, extracting data from the source, transforming
 
 
 
-```markdown
-SUCEESULLY DEPLOYED ETL PIPELINE
-![Airflow UI Screenshot](https://github.com/Gangasagarhl/MLOPS_HEART_DISEASE/blob/main/airflow_succes.png)
-```
 
+##  Successfully Deployed ETL Pipeline
 
-```markdown
-UPLOADED DATA SUCCESSFULLY TO MONGO DB IN ATLAS
-![Airflow UI](https://github.com/Gangasagarhl/MLOPS_HEART_DISEASE/blob/main/database.png)
-```
+![Airflow UI Screenshot](https://raw.githubusercontent.com/Gangasagarhl/MLOPS_HEART_DISEASE/main/airflow_succes.png)
+
+---
+
+##  Uploaded Data Successfully to MongoDB Atlas
+
+![MongoDB Upload Screenshot](https://raw.githubusercontent.com/Gangasagarhl/MLOPS_HEART_DISEASE/main/database.png)
+
 
 ---
 
