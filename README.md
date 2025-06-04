@@ -121,4 +121,4 @@ sudo sh get-docker.sh
 
 sudo usermod -aG docker ubuntu
 
-newgrp docker# MLOPS_HEART_DISEASE
+newgrp docker # MLOPS_HEART_DISEASE
