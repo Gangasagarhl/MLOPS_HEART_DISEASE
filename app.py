@@ -32,9 +32,10 @@ from heartdisease.constant.training_pipeline import DATA_INGESTION_DATABASE_NAME
 
 database = client[DATA_INGESTION_DATABASE_NAME]
 collection = database[DATA_INGESTION_COLLECTION_NAME]
-
+import requests
 app = FastAPI()
 origins = ["*"]
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -60,28 +61,74 @@ async def train_route():
     except Exception as e:
         raise HeartDiseaseException(e,sys)
     
+
+
+@app.get("/predict")
+async def predict_form(request: Request):
+    return templates.TemplateResponse("predict_form.html", {"request": request})
+
 @app.post("/predict")
-async def predict_route(request: Request,file: UploadFile = File(...)):
+async def predict_route(
+    request: Request,
+    age: int = Form(...),
+    sex: int = Form(...),
+    cp: int = Form(...),
+    trestbps: int = Form(...),
+    chol: int = Form(...),
+    fbs: int = Form(...),
+    restecg: int = Form(...),
+    thalach: int = Form(...),
+    exang: int = Form(...),
+    oldpeak: float = Form(...),
+    slope: int = Form(...),
+    ca: int = Form(...),
+    thal: int = Form(...)
+):
     try:
-        df=pd.read_csv(file.file)
-        #print(df)
-        preprocesor=load_object("final_model/preprocessor.pkl")
-        final_model=load_object("final_model/model.pkl")
-        network_model = NetworkModel(preprocessor=preprocesor,model=final_model)
-        print(df.iloc[0])
-        y_pred = network_model.predict(df)
-        print(y_pred)
-        df['predicted_column'] = y_pred
-        print(df['predicted_column'])
-        #df['predicted_column'].replace(-1, 0)
-        #return df.to_json()
-        df.to_csv('prediction_output/output.csv')
-        table_html = df.to_html(classes='table table-striped')
-        #print(table_html)
-        return templates.TemplateResponse("table.html", {"request": request, "table": table_html})
+        # Create a DataFrame from form inputs
+        data = {
+            'age': [age],
+            'sex': [sex],
+            'cp': [cp],
+            'trestbps': [trestbps],
+            'chol': [chol],
+            'fbs': [fbs],
+            'restecg': [restecg],
+            'thalach': [thalach],
+            'exang': [exang],
+            'oldpeak': [oldpeak],
+            'slope': [slope],
+            'ca': [ca],
+            'thal': [thal]
+        }
+        df = pd.DataFrame(data)
         
+        # Load preprocessor and model
+        preprocessor = load_object("final_model/preprocessor.pkl")
+        final_model = load_object("final_model/model.pkl")
+        network_model = NetworkModel(preprocessor=preprocessor, model=final_model)
+        
+        # Make prediction
+        y_pred = network_model.predict(df)
+        prediction = y_pred[0]  # Assuming y_pred is a list or array
+        
+        # Determine message and class based on prediction
+        if prediction == 0:
+            message = "You are safe, but check with doctor."
+            class_name = "safe"
+        else:
+            message = "Check with the doctor immediately."
+            class_name = "warning"
+        
+        # Return result template
+        return templates.TemplateResponse("result.html", {"request": request, "message": message, "class_name": class_name})
+    
     except Exception as e:
-            raise HeartDiseaseException(e,sys)
+        raise HeartDiseaseException(e, sys)
+    
+
+    
+
 
     
 if __name__=="__main__":
