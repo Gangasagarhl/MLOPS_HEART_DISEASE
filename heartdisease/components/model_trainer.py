@@ -73,10 +73,9 @@ class ModelTrainer:
         
     def train_model(self,X_train,y_train,x_test,y_test):
         models = {
+                "KNeighborsClassifier": KNeighborsClassifier(),
                 "Random Forest": RandomForestClassifier(verbose=1),
-                "Decision Tree": DecisionTreeClassifier(),
-                "Gradient Boosting": GradientBoostingClassifier(verbose=1),
-                "Logistic Regression": LogisticRegression(verbose=1),
+                "Decision Tree": DecisionTreeClassifier(),               
                 "AdaBoost": AdaBoostClassifier(),
             }
         params={
