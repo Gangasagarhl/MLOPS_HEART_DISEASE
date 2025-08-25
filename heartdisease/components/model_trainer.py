@@ -14,15 +14,10 @@ from heartdisease.utils.main_utils.utils import save_object,load_object
 from heartdisease.utils.main_utils.utils import load_numpy_array_data,evaluate_models
 from heartdisease.utils.ml_utils.metric.classification_metric import get_classification_score
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import r2_score
+
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import (
-    AdaBoostClassifier,
-    GradientBoostingClassifier,
-    RandomForestClassifier,
-)
+from sklearn.ensemble import  AdaBoostClassifier
 import mlflow
 from urllib.parse import urlparse
 
